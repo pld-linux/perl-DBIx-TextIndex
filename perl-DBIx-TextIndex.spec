@@ -7,8 +7,8 @@
 Summary:	DBIx::TextIndex - Perl extension for full-text searching in SQL databases
 Summary(pl):	DBIx::TextIndex - rozszerzenie do pe³notekstowego przeszukiwania baz SQL
 Name:		perl-DBIx-TextIndex
-Version:	0.08
-Release:	2
+Version:	0.10
+Release:	1
 License:	GPL/Artistic
 Group:		Development/Languages/Perl
 Source0:	ftp://ftp.cpan.org/pub/CPAN/modules/by-module/%{pdir}/%{pdir}-%{pnam}-%{version}.tar.gz
