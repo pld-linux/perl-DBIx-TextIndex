@@ -1,25 +1,30 @@
 #
 # Conditional build:
-# _without_tests - do not perform "make test"
+%bcond_with	tests	# perform "make test"
+			# Requires configured MySQL local database
+
 %include	/usr/lib/rpm/macros.perl
 %define	pdir	DBIx
 %define	pnam	TextIndex
 Summary:	DBIx::TextIndex - Perl extension for full-text searching in SQL databases
 Summary(pl):	DBIx::TextIndex - rozszerzenie do pe³notekstowego przeszukiwania baz SQL
 Name:		perl-DBIx-TextIndex
-Version:	0.11
-Release:	2
-License:	GPL/Artistic
+Version:	0.21
+Release:	1
+# same as Perl
+License:	GPL or Artistic
 Group:		Development/Languages/Perl
 Source0:	http://www.cpan.org/modules/by-module/%{pdir}/%{pdir}-%{pnam}-%{version}.tar.gz
-# Source0-md5:	6c47c5366bfbd6ae9cf41da212411067
+# Source0-md5:	2cb74e892f6f1858e8126a9b614d2223
 BuildRequires:	perl-devel >= 5.6
 BuildRequires:	rpm-perlprov >= 4.1-13
-%if %{?_without_tests:0}%{!?_without_tests:1}
+%if %{with tests}
 BuildRequires:	perl-Bit-Vector
 BuildRequires:	perl(Data::Dumper)
+BuildRequires:	perl-Exception-Class
+#BuildRequires:	perl-Text-Unaccent # Not in PLD yet
+BuildRequires:	perl(Text::Balanced) # core perl module since 5.8
 %endif
-BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -40,9 +45,10 @@ wyra¿eñ SQL w module.
 %build
 %{__perl} Makefile.PL \
 	INSTALLDIRS=vendor
-%{__make}
+%{__make} \
+	OPTIMIZE="%{rpmcflags}"
 
-%{!?_without_tests:%{__make} test}
+%{?with_tests:%{__make} test}
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -51,15 +57,17 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT
 
 install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
-gzip -9nf examples/{README,*.txt}
-cp -a examples/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
+gzip -9nf eg/README
+cp -a eg/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%{perl_vendorlib}/%{pdir}/*.pm
-%{perl_vendorlib}/%{pdir}/%{pnam}
+%{perl_vendorarch}/%{pdir}/*.pm
+%{perl_vendorarch}/%{pdir}/%{pnam}
+%{perl_vendorarch}/auto/%{pdir}/%{pnam}/*.bs
+%attr(755,root,root) %{perl_vendorarch}/auto/%{pdir}/%{pnam}/*.so
 %{_examplesdir}/%{name}-%{version}
 %{_mandir}/man3/*
