@@ -5,10 +5,10 @@
 %define	pdir	DBIx
 %define	pnam	TextIndex
 Summary:	DBIx::TextIndex - Perl extension for full-text searching in SQL databases
-#Summary(pl):	
+Summary(pl):	DBIx::TextIndex - rozszerzenie do pe³notekstowego przeszukiwania baz SQL
 Name:		perl-DBIx-TextIndex
 Version:	0.08
-Release:	1
+Release:	2
 License:	GPL/Artistic
 Group:		Development/Languages/Perl
 Source0:	ftp://ftp.cpan.org/pub/CPAN/modules/by-module/%{pdir}/%{pdir}-%{pnam}-%{version}.tar.gz
@@ -22,12 +22,16 @@ BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-DBIx::TextIndex was developed for doing full-text searches on BLOB columns
-stored in a database.  Almost any database with BLOB and DBI support
-should work with minor adjustments to SQL statements in the module.
+DBIx::TextIndex was developed for doing full-text searches on BLOB
+columns stored in a database. Almost any database with BLOB and DBI
+support should work with minor adjustments to SQL statements in the
+module.
 
-# %description -l pl
-# TODO
+%description -l pl
+Modu³ DBIx::TextIndex s³u¿y do przeprowadzania pe³notekstowych
+przeszukiwañ kolumn BLOB zapisanyc w bazie danych. Prawie ka¿da baza
+danych z obs³ug± BLOB i DBI powinna dzia³aæ po niewielkich poprawkach
+wyra¿eñ SQL w module.
 
 %prep
 %setup -q -n %{pdir}-%{pnam}-%{version}
@@ -35,6 +39,7 @@ should work with minor adjustments to SQL statements in the module.
 %build
 perl Makefile.PL
 %{__make}
+
 %{!?_without_tests:%{__make} test}
 
 %install
