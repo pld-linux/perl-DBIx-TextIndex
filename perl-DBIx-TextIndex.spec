@@ -4,8 +4,8 @@
 			# Requires configured MySQL local database
 
 %include	/usr/lib/rpm/macros.perl
-%define	pdir	DBIx
-%define	pnam	TextIndex
+%define		pdir	DBIx
+%define		pnam	TextIndex
 Summary:	DBIx::TextIndex - Perl extension for full-text searching in SQL databases
 Summary(pl):	DBIx::TextIndex - rozszerzenie do pe³notekstowego przeszukiwania baz SQL
 Name:		perl-DBIx-TextIndex
