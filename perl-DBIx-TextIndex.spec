@@ -35,7 +35,7 @@ module.
 
 %description -l pl
 Modu³ DBIx::TextIndex s³u¿y do przeprowadzania pe³notekstowych
-przeszukiwañ kolumn BLOB zapisanyc w bazie danych. Prawie ka¿da baza
+przeszukiwañ kolumn BLOB zapisanych w bazie danych. Prawie ka¿da baza
 danych z obs³ug± BLOB i DBI powinna dzia³aæ po niewielkich poprawkach
 wyra¿eñ SQL w module.
 
