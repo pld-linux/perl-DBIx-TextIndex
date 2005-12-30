@@ -10,7 +10,7 @@ Summary:	DBIx::TextIndex - Perl extension for full-text searching in SQL databas
 Summary(pl):	DBIx::TextIndex - rozszerzenie do pe³notekstowego przeszukiwania baz SQL
 Name:		perl-DBIx-TextIndex
 Version:	0.25
-Release:	1
+Release:	2
 # same as perl
 License:	GPL v1+ or Artistic
 Group:		Development/Languages/Perl
@@ -19,12 +19,13 @@ Source0:	http://www.cpan.org/modules/by-module/%{pdir}/%{pdir}-%{pnam}-%{version
 BuildRequires:	perl-devel >= 1:5.8.0
 BuildRequires:	rpm-perlprov >= 4.1-13
 %if %{with tests}
-BuildRequires:	perl-Bit-Vector
 BuildRequires:	perl(Data::Dumper)
+BuildRequires:	perl(Text::Balanced) # core perl module since 5.8
+BuildRequires:	perl-Bit-Vector
 BuildRequires:	perl-Exception-Class
 #BuildRequires:	perl-Text-Unaccent # Not in PLD yet
-BuildRequires:	perl(Text::Balanced) # core perl module since 5.8
 %endif
+Requires:	perl-DBI >= 1.48-2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -53,12 +54,13 @@ wyra¿eñ SQL w module.
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__make} install \
+%{__make} pure_install \
 	DESTDIR=$RPM_BUILD_ROOT
 
 install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 gzip -9nf eg/README
 cp -a eg/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
+rm -f $RPM_BUILD_ROOT%{perl_vendorarch}/auto/DBIx/TextIndex/.packlist
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -67,6 +69,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{perl_vendorarch}/%{pdir}/*.pm
 %{perl_vendorarch}/%{pdir}/%{pnam}
+%dir %{perl_vendorarch}/auto/%{pdir}/%{pnam}
 %{perl_vendorarch}/auto/%{pdir}/%{pnam}/*.bs
 %attr(755,root,root) %{perl_vendorarch}/auto/%{pdir}/%{pnam}/*.so
 %{_examplesdir}/%{name}-%{version}
