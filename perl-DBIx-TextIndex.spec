@@ -7,7 +7,7 @@
 %define		pdir	DBIx
 %define		pnam	TextIndex
 Summary:	DBIx::TextIndex - Perl extension for full-text searching in SQL databases
-Summary(pl):	DBIx::TextIndex - rozszerzenie do pe≥notekstowego przeszukiwania baz SQL
+Summary(pl.UTF-8):   DBIx::TextIndex - rozszerzenie do pe≈Çnotekstowego przeszukiwania baz SQL
 Name:		perl-DBIx-TextIndex
 Version:	0.25
 Release:	2
@@ -34,11 +34,11 @@ columns stored in a database. Almost any database with BLOB and DBI
 support should work with minor adjustments to SQL statements in the
 module.
 
-%description -l pl
-Modu≥ DBIx::TextIndex s≥uøy do przeprowadzania pe≥notekstowych
-przeszukiwaÒ kolumn BLOB zapisanych w bazie danych. Prawie kaøda baza
-danych z obs≥ug± BLOB i DBI powinna dzia≥aÊ po niewielkich poprawkach
-wyraøeÒ SQL w module.
+%description -l pl.UTF-8
+Modu≈Ç DBIx::TextIndex s≈Çu≈ºy do przeprowadzania pe≈Çnotekstowych
+przeszukiwa≈Ñ kolumn BLOB zapisanych w bazie danych. Prawie ka≈ºda baza
+danych z obs≈ÇugƒÖ BLOB i DBI powinna dzia≈Çaƒá po niewielkich poprawkach
+wyra≈ºe≈Ñ SQL w module.
 
 %prep
 %setup -q -n %{pdir}-%{pnam}-%{version}
