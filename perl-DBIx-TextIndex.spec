@@ -7,7 +7,7 @@
 %define		pdir	DBIx
 %define		pnam	TextIndex
 Summary:	DBIx::TextIndex - Perl extension for full-text searching in SQL databases
-Summary(pl.UTF-8):   DBIx::TextIndex - rozszerzenie do pełnotekstowego przeszukiwania baz SQL
+Summary(pl.UTF-8):	DBIx::TextIndex - rozszerzenie do pełnotekstowego przeszukiwania baz SQL
 Name:		perl-DBIx-TextIndex
 Version:	0.25
 Release:	2
