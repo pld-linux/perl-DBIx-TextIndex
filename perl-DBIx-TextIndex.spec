@@ -1,8 +1,7 @@
 #
 # Conditional build:
-%bcond_with	tests	# perform "make test"
-			# Requires configured MySQL local database
-
+%bcond_with	tests	# perform "make test" (requires configured local MySQL database)
+#
 %include	/usr/lib/rpm/macros.perl
 %define		pdir	DBIx
 %define		pnam	TextIndex
@@ -14,16 +13,17 @@ Release:	2
 # same as perl
 License:	GPL v1+ or Artistic
 Group:		Development/Languages/Perl
-Source0:	http://www.cpan.org/modules/by-module/%{pdir}/%{pdir}-%{pnam}-%{version}.tar.gz
+Source0:	http://www.cpan.org/modules/by-module/DBIx/%{pdir}-%{pnam}-%{version}.tar.gz
 # Source0-md5:	d80e4849d4f793e0e7ac149d67c8c73b
+URL:		http://search.cpan.org/dist/DBIx-TextIndex/
 BuildRequires:	perl-devel >= 1:5.8.0
 BuildRequires:	rpm-perlprov >= 4.1-13
 %if %{with tests}
 BuildRequires:	perl(Data::Dumper)
-BuildRequires:	perl(Text::Balanced) # core perl module since 5.8
 BuildRequires:	perl-Bit-Vector
 BuildRequires:	perl-Exception-Class
-#BuildRequires:	perl-Text-Unaccent # Not in PLD yet
+BuildRequires:	perl-Text-Balanced
+BuildRequires:	perl-Text-Unaccent
 %endif
 Requires:	perl-DBI >= 1.48-2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -68,10 +68,10 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%{perl_vendorarch}/%{pdir}/*.pm
-%{perl_vendorarch}/%{pdir}/%{pnam}
-%dir %{perl_vendorarch}/auto/%{pdir}/%{pnam}
-%{perl_vendorarch}/auto/%{pdir}/%{pnam}/*.bs
-%attr(755,root,root) %{perl_vendorarch}/auto/%{pdir}/%{pnam}/*.so
+%{perl_vendorarch}/DBIx/*.pm
+%{perl_vendorarch}/DBIx/TextIndex
+%dir %{perl_vendorarch}/auto/DBIx/TextIndex
+%{perl_vendorarch}/auto/DBIx/TextIndex/*.bs
+%attr(755,root,root) %{perl_vendorarch}/auto/DBIx/TextIndex/*.so
 %{_examplesdir}/%{name}-%{version}
 %{_mandir}/man3/*
