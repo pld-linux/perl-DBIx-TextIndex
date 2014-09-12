@@ -71,7 +71,6 @@ rm -rf $RPM_BUILD_ROOT
 %{perl_vendorarch}/DBIx/*.pm
 %{perl_vendorarch}/DBIx/TextIndex
 %dir %{perl_vendorarch}/auto/DBIx/TextIndex
-%{perl_vendorarch}/auto/DBIx/TextIndex/*.bs
 %attr(755,root,root) %{perl_vendorarch}/auto/DBIx/TextIndex/*.so
 %{_examplesdir}/%{name}-%{version}
 %{_mandir}/man3/*
