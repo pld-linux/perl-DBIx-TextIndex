@@ -2,7 +2,6 @@
 # Conditional build:
 %bcond_with	tests	# perform "make test" (requires configured local MySQL database)
 #
-%include	/usr/lib/rpm/macros.perl
 %define		pdir	DBIx
 %define		pnam	TextIndex
 Summary:	DBIx::TextIndex - Perl extension for full-text searching in SQL databases
